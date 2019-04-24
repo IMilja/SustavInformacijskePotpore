@@ -43,7 +43,7 @@ AppAsset::register($this);
       ['label' => 'Korisnici', 'url' => ['/korisnik']],
       ['label' => 'Novosti', 'url' => ['/novost']],
       ['label' => 'Prijave', 'url' => ['/prijava']],
-      ['label' => 'Stanja terena', 'url' => ['/stanjeterena']],
+      ['label' => 'Stanja terena', 'url' => ['/stanje-terena']],
       ['label' => 'uloga', 'url' => ['/uloga']],
       Yii::$app->user->isGuest ? (
       ['label' => 'Login', 'url' => ['/site/login']]
