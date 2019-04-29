@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Korisnik */
 
-$this->title = $model->ID;
-$this->params['breadcrumbs'][] = ['label' => 'Korisniks', 'url' => ['index']];
+$this->title = $model->Korisnicko_Ime;
+$this->params['breadcrumbs'][] = ['label' => 'Korisnici', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Update', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
-      <?= Html::a('Delete', ['delete', 'id' => $model->ID], [
+      <?= Html::a('Ažuriranje', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
+      <?= Html::a('Brisanje', ['delete', 'id' => $model->ID], [
         'class' => 'btn btn-danger',
         'data' => [
-          'confirm' => 'Are you sure you want to delete this item?',
+          'confirm' => 'Jeste li sigurni da želite izbrisati ovu stavku?',
           'method' => 'post',
         ],
       ]) ?>
@@ -29,17 +29,20 @@ $this->params['breadcrumbs'][] = $this->title;
   <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-      'ID',
-      'Korisnicko_Ime',
-      'Lozinka',
-      'EMail:email',
       'Ime',
       'Prezime',
+      'EMail:email',
       'Broj_Mobitela',
       'OIB',
-      'authKey',
-      'accessToken',
-      'ID_Uloge',
+      [
+        'attribute' => 'Uloga',
+        'value' => $model->uloge->Naziv_Uloge
+      ],
+      //'accessToken',
+      //'authKey',
+      //'Lozinka',
+      //'Korisnicko_Ime',
+      //'ID',
     ],
   ]) ?>
 

@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Uloga;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -26,14 +28,15 @@ use yii\widgets\ActiveForm;
 
   <?= $form->field($model, 'OIB')->textInput(['maxlength' => true]) ?>
 
-  <?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?>
-
-  <?= $form->field($model, 'accessToken')->textInput(['maxlength' => true]) ?>
-
-  <?= $form->field($model, 'ID_Uloge')->textInput() ?>
+  <?= $form->field($model, 'ID_Uloge')->dropDownList(
+  //ToDo: Add default value to Uloga select
+    ArrayHelper::map(Uloga::find()->all(),
+      'ID',
+      'Naziv_Uloge')
+  )->label('Uloga'); ?>
 
     <div class="form-group">
-      <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+      <?= Html::submitButton('Spremi', ['class' => 'btn btn-success']) ?>
     </div>
 
   <?php ActiveForm::end(); ?>

@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
   <?= DetailView::widget([
-  //Todo: Implement ime and prezime to show as author
     'model' => $model,
     'attributes' => [
       //'ID',

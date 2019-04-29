@@ -49,7 +49,17 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
       [['EMail'], 'unique'],
       [['OIB'], 'unique'],
       [['Broj_Mobitela'], 'unique'],
-      [['ID_Uloge'], 'exist', 'skipOnError' => true, 'targetClass' => Uloga::className(), 'targetAttribute' => ['ID_Uloge' => 'ID']],
+      [['ID_Uloge'], 'exist', 'skipOnError' => true,
+        'targetClass' => Uloga::className(),
+        'targetAttribute' => ['ID_Uloge' => 'ID']
+      ],
+      [['Korisnicko_Ime', 'Lozinka', 'EMail', 'Ime', 'Prezime', 'Broj_Mobitela', 'OIB'],
+        'required', 'message' => '{attribute} ne smije biti prazno polje'],
+      [['Lozinka'], 'string', 'min' => 6,
+        'tooShort' => 'Lozinka ne može biti kraća od 6 znakova'
+      ],
+      ['OIB', 'CheckOIB'],
+      ['EMail', 'email', 'message' => 'Niste unijeli pravilnu E-Mail adresu']
     ];
   }
 
@@ -60,13 +70,13 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
   {
     return [
       'ID' => 'ID',
-      'Korisnicko_Ime' => 'Korisnicko Ime',
+      'Korisnicko_Ime' => 'Korisnicko ime',
       'Lozinka' => 'Lozinka',
-      'EMail' => 'E Mail',
+      'EMail' => 'E-Mail',
       'Ime' => 'Ime',
       'Prezime' => 'Prezime',
-      'Broj_Mobitela' => 'Broj Mobitela',
-      'OIB' => 'Oib',
+      'Broj_Mobitela' => 'Broj mobitela',
+      'OIB' => 'OIB',
       'authKey' => 'Auth Key',
       'accessToken' => 'Access Token',
       'ID_Uloge' => 'Id Uloge',
@@ -175,6 +185,12 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
     return $this->getAuthKey() === $authKey;
   }
 
+  /**
+   * @param bool $insert
+   * @return bool
+   * @throws \yii\base\Exception
+   */
+
   public function beforeSave($insert)
   {
     if (parent::beforeSave($insert)) {
@@ -215,5 +231,52 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
   public function validatePassword($password)
   {
     return \Yii::$app->security->validatePassword($password, $this->Lozinka);
+  }
+
+  /**
+   * Check if OIB is valid
+   * @param $attribute
+   * @return bool if OIB providen is valid
+   */
+  // ToDo: Created and finish OIB validator
+  private function CheckOIB($attribute)
+  {
+    if (strlen($attribute) == 11) {
+      $attribute = intval($attribute);
+      if (is_numeric($attribute)) {
+
+        $a = 10;
+
+        for ($i = 0; $i < 10; $i++) {
+
+          $a = $a + intval(substr($attribute, $i, 1), 10);
+          $a = $a % 10;
+
+          if ($a == 0) {
+            $a = 10;
+          }
+
+          $a *= 2;
+          $a = $a % 11;
+
+        }
+
+        $kontrolni = 11 - $a;
+
+        if ($kontrolni == 10) {
+          $kontrolni = 0;
+        }
+
+        return $kontrolni === intval(substr($attribute, 10, 1), 10);
+
+      } else {
+        $this->addError($attribute, 'Unijeli ste netočni OIB');
+        return false;
+      }
+
+    } else {
+      $this->addError($attribute, 'OIB kojeg ste unijeli je prekratak');
+      return false;
+    }
   }
 }

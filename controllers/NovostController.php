@@ -62,14 +62,13 @@ class NovostController extends Controller
    * If creation is successful, the browser will be redirected to the 'view' page.
    * @return mixed
    */
-  // ToDo: Added logged in user ID while saving a record
   public function actionCreate()
   {
     $model = new Novost();
 
     if ($model->load(Yii::$app->request->post())) {
       if($model->validate()){
-        
+
         $model->Vrijeme_Objave = date("Y-m-d h:i");
         $model->ID_Korisnik = \Yii::$app->user->ID;
 

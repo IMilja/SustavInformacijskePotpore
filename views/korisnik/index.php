@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Korisniks';
+$this->title = 'Korisnici';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="korisnik-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Create Korisnik', ['create'], ['class' => 'btn btn-success']) ?>
+      <?= Html::a('Unos korisnika', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
   <?php Pjax::begin(); ?>
@@ -25,13 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
       ['class' => 'yii\grid\SerialColumn'],
 
-      'ID',
-      'Korisnicko_Ime',
-      'Lozinka',
-      'EMail:email',
       'Ime',
-      //'Prezime',
-      //'Broj_Mobitela',
+      'Prezime',
+      'EMail:email',
+      'Broj_Mobitela',
+      //'ID',
+      //'Lozinka',
+      //'Korisnicko_Ime',
       //'OIB',
       //'authKey',
       //'accessToken',
