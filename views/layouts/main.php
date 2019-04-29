@@ -44,7 +44,7 @@ AppAsset::register($this);
       ['label' => 'Novosti', 'url' => ['/novost']],
       ['label' => 'Prijave', 'url' => ['/prijava']],
       ['label' => 'Stanja terena', 'url' => ['/stanje-terena']],
-      ['label' => 'uloga', 'url' => ['/uloga']],
+      ['label' => 'Uloga', 'url' => ['/uloga']],
       Yii::$app->user->isGuest ? (
       ['label' => 'Login', 'url' => ['/site/login']]
       ) : (
