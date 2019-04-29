@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Prijava */
 
-$this->title = 'Create Prijava';
-$this->params['breadcrumbs'][] = ['label' => 'Prijavas', 'url' => ['index']];
+$this->title = 'Unos prijave';
+$this->params['breadcrumbs'][] = ['label' => 'Prijave', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="prijava-create">

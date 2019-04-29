@@ -62,12 +62,22 @@ class NovostController extends Controller
    * If creation is successful, the browser will be redirected to the 'view' page.
    * @return mixed
    */
+  // ToDo: Added logged in user ID while saving a record
   public function actionCreate()
   {
     $model = new Novost();
 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-      return $this->redirect(['view', 'id' => $model->ID]);
+    $model->Vrijeme_Objave = date("Y-m-d h:i");
+
+    if ($model->load(Yii::$app->request->post())) {
+      if($model->validate()){
+        $model->save();
+        return $this->redirect(['view', 'id' => $model->ID]);
+      }
+      return $this->render('create', [
+        'model' => $model,
+        'errors' => $model->errors,
+      ]);
     }
 
     return $this->render('create', [
@@ -101,6 +111,8 @@ class NovostController extends Controller
    * @param integer $id
    * @return mixed
    * @throws NotFoundHttpException if the model cannot be found
+   * @throws \Throwable
+   * @throws \yii\db\StaleObjectException
    */
   public function actionDelete($id)
   {

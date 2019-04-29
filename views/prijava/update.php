@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Prijava */
 
-$this->title = 'Update Prijava: ' . $model->ID;
-$this->params['breadcrumbs'][] = ['label' => 'Prijavas', 'url' => ['index']];
+$this->title = 'Ažuriranje prijave: ' . $model->ID;
+$this->params['breadcrumbs'][] = ['label' => 'Prijave', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID, 'url' => ['view', 'id' => $model->ID]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Ažuriranje';
 ?>
 <div class="prijava-update">
 

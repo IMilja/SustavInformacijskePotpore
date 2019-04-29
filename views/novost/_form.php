@@ -12,14 +12,12 @@ use yii\widgets\ActiveForm;
 
   <?php $form = ActiveForm::begin(); ?>
 
-  <?= $form->field($model, 'Opis')->textInput(['maxlength' => true]) ?>
-
-  <?= $form->field($model, 'Vrijeme_Objave')->textInput() ?>
+  <?= $form->field($model, 'Opis')->textarea(['maxlength' => true])->label('Opis novosti') ?>
 
   <?= $form->field($model, 'ID_Korisnik')->textInput() ?>
 
     <div class="form-group">
-      <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+      <?= Html::submitButton('Spremi', ['class' => 'btn btn-success']) ?>
     </div>
 
   <?php ActiveForm::end(); ?>
