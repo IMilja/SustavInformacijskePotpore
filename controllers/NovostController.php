@@ -67,10 +67,12 @@ class NovostController extends Controller
   {
     $model = new Novost();
 
-    $model->Vrijeme_Objave = date("Y-m-d h:i");
-
     if ($model->load(Yii::$app->request->post())) {
       if($model->validate()){
+        
+        $model->Vrijeme_Objave = date("Y-m-d h:i");
+        $model->ID_Korisnik = \Yii::$app->user->ID;
+
         $model->save();
         return $this->redirect(['view', 'id' => $model->ID]);
       }

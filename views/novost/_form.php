@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
   <?= $form->field($model, 'Opis')->textarea(['maxlength' => true])->label('Opis novosti') ?>
 
-  <?= $form->field($model, 'ID_Korisnik')->textInput() ?>
-
     <div class="form-group">
       <?= Html::submitButton('Spremi', ['class' => 'btn btn-success']) ?>
     </div>

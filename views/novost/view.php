@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'Vrijeme_Objave',
       [
         'attribute' => "Autor",
-        'value' => ""
+        'value' => $model->korisnik->Korisnicko_Ime
       ],
     ],
   ]) ?>
