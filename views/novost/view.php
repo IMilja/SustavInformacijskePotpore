@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Novost */
 
 $this->title = $model->ID;
-$this->params['breadcrumbs'][] = ['label' => 'Novosts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Novosti', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Update', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
-      <?= Html::a('Delete', ['delete', 'id' => $model->ID], [
+      <?= Html::a('Ažuriranje', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
+      <?= Html::a('Brisanje', ['delete', 'id' => $model->ID], [
         'class' => 'btn btn-danger',
         'data' => [
-          'confirm' => 'Are you sure you want to delete this item?',
+          'confirm' => 'Jeste li sigurni da želite izbrisati ovu stavku?',
           'method' => 'post',
         ],
       ]) ?>
@@ -29,10 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
   <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-      'ID',
+      //'ID',
       'Opis',
       'Vrijeme_Objave',
-      'ID_Korisnik',
+      [
+        'attribute' => "Autor",
+        'value' => $model->korisnik->Korisnicko_Ime
+      ],
     ],
   ]) ?>
 

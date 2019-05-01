@@ -66,8 +66,19 @@ class NovostController extends Controller
   {
     $model = new Novost();
 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-      return $this->redirect(['view', 'id' => $model->ID]);
+    if ($model->load(Yii::$app->request->post())) {
+      if($model->validate()){
+
+        $model->Vrijeme_Objave = date("Y-m-d h:i");
+        $model->ID_Korisnik = \Yii::$app->user->ID;
+
+        $model->save();
+        return $this->redirect(['view', 'id' => $model->ID]);
+      }
+      return $this->render('create', [
+        'model' => $model,
+        'errors' => $model->errors,
+      ]);
     }
 
     return $this->render('create', [
@@ -101,6 +112,8 @@ class NovostController extends Controller
    * @param integer $id
    * @return mixed
    * @throws NotFoundHttpException if the model cannot be found
+   * @throws \Throwable
+   * @throws \yii\db\StaleObjectException
    */
   public function actionDelete($id)
   {

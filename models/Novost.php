@@ -34,7 +34,11 @@ class Novost extends \yii\db\ActiveRecord
       [['Vrijeme_Objave'], 'safe'],
       [['ID_Korisnik'], 'integer'],
       [['Opis'], 'string', 'max' => 255],
-      [['ID_Korisnik'], 'exist', 'skipOnError' => true, 'targetClass' => Korisnik::className(), 'targetAttribute' => ['ID_Korisnik' => 'ID']],
+      [['ID_Korisnik'], 'exist', 'skipOnError' => true,
+        'targetClass' => Korisnik::className(),
+        'targetAttribute' => ['ID_Korisnik' => 'ID']
+      ],
+      [['Opis'], 'required', 'message' => "Potrebno je unijeti {attribute}"]
     ];
   }
 

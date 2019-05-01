@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Prijavas';
+$this->title = 'Prijave';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="prijava-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Create Prijava', ['create'], ['class' => 'btn btn-success']) ?>
+      <?= Html::a('Unos prijave', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
   <?php Pjax::begin(); ?>
@@ -25,15 +25,15 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
       ['class' => 'yii\grid\SerialColumn'],
 
-      'ID',
-      'Opis',
-      'Vrijeme_Prijave',
-      'Lat',
-      'Long',
-      //'Odobreno',
-      //'Vrijeme_Odobrenja',
-      //'ID_Novost',
       //'ID_Korisnik',
+      'Vrijeme_Prijave',
+      'Odobreno',
+      'Vrijeme_Odobrenja',
+      //'ID',
+      //'Opis',
+      //'Lat',
+      //'Long',
+      //'ID_Novost',
 
       ['class' => 'yii\grid\ActionColumn'],
     ],
