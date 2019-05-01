@@ -7,6 +7,11 @@ $config = [
   'id' => 'basic',
   'basePath' => dirname(__DIR__),
   'bootstrap' => ['log'],
+  'modules' => [
+    'v1' => [
+      'class' => 'app\modules\v1\module'
+    ]
+  ],
   'aliases' => [
     '@bower' => '@vendor/bower-asset',
     '@npm' => '@vendor/npm-asset',
@@ -48,6 +53,10 @@ $config = [
       'enablePrettyUrl' => true,
       'showScriptName' => false,
       'rules' => [
+        ['class' => 'yii\rest\UrlRule',
+          'controller' => ['v1/korisnik', 'v1/novosti', 'v1/prijava', 'v1/stanjeterena'],
+          'pluralize' => false
+        ],
       ],
     ],
 
