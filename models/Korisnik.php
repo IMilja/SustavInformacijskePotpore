@@ -58,7 +58,6 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
       [['Lozinka'], 'string', 'min' => 6,
         'tooShort' => 'Lozinka ne može biti kraća od 6 znakova'
       ],
-      ['OIB', 'CheckOIB'],
       ['EMail', 'email', 'message' => 'Niste unijeli pravilnu E-Mail adresu']
     ];
   }
