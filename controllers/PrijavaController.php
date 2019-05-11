@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * PrijavaController implements the CRUD actions for Prijava model.
@@ -24,6 +26,22 @@ class PrijavaController extends Controller
         'class' => VerbFilter::className(),
         'actions' => [
           'delete' => ['POST'],
+        ],
+      ],
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => [
+          'create',
+          'update',
+          'view',
+          'index',
+          'delete'
+        ],
+        'rules' => [
+          [
+            'allow' => true,
+            'roles' => ['@']
+          ],
         ],
       ],
     ];

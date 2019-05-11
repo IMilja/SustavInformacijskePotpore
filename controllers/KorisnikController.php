@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Korisnik;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +25,22 @@ class KorisnikController extends Controller
         'class' => VerbFilter::className(),
         'actions' => [
           'delete' => ['POST'],
+        ],
+      ],
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => [
+          'create',
+          'update',
+          'view',
+          'index',
+          'delete'
+        ],
+        'rules' => [
+          [
+            'allow' => true,
+            'roles' => ['@']
+          ],
         ],
       ],
     ];

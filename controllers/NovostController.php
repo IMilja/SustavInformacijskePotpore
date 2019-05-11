@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * NovostController implements the CRUD actions for Novost model.
@@ -24,6 +26,22 @@ class NovostController extends Controller
         'class' => VerbFilter::className(),
         'actions' => [
           'delete' => ['POST'],
+        ],
+      ],
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => [
+          'create',
+          'update',
+          'view',
+          'index',
+          'delete'
+        ],
+        'rules' => [
+          [
+            'allow' => true,
+            'roles' => ['@']
+          ],
         ],
       ],
     ];
@@ -67,7 +85,7 @@ class NovostController extends Controller
     $model = new Novost();
 
     if ($model->load(Yii::$app->request->post())) {
-      if($model->validate()){
+      if ($model->validate()) {
 
         $model->Vrijeme_Objave = date("Y-m-d h:i");
         $model->ID_Korisnik = \Yii::$app->user->ID;
