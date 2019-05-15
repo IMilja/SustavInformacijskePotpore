@@ -5,11 +5,10 @@ namespace app\controllers;
 use Yii;
 use app\models\Novost;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-
 
 /**
  * NovostController implements the CRUD actions for Novost model.
