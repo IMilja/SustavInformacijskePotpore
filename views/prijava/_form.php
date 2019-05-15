@@ -13,7 +13,6 @@ use yii\widgets\ActiveForm;
 <div class="prijava-form">
   <?php
   //ToDo: Remove all fields until we create the API for Prijava Entry
-  //ToDo: Add a more descriptive dropdown text
   ?>
 
   <?php $form = ActiveForm::begin(); ?>
@@ -34,14 +33,14 @@ use yii\widgets\ActiveForm;
           ArrayHelper::map(
                   Novost::find()->all(),
                   'ID',
-            'Vrijeme_Objave'
+            'Naslov'
           )
-  )->label('Vrijeme objave')?>
+  )->label('Naslov novosti')?>
 
   <?= $form->field($model, 'ID_Korisnik')->textInput() ?>
 
     <div class="form-group">
-      <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+      <?= Html::submitButton('Spremi', ['class' => 'btn btn-success']) ?>
     </div>
 
   <?php ActiveForm::end(); ?>
