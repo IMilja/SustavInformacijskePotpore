@@ -2,23 +2,44 @@
 
 namespace app\modules\v1;
 
+use app\models\Korisnik;
+use Yii;
+use yii\filters\auth\HttpBearerAuth;
+use yii\web\Response;
+
 /**
  * v1 module definition class
  */
 class module extends \yii\base\Module
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $controllerNamespace = 'app\modules\v1\controllers';
+  /**
+   * {@inheritdoc}
+   */
+  public $controllerNamespace = 'app\modules\v1\controllers';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function init()
-    {
-        parent::init();
+  public function behaviors()
+  {
+    $behaviors = parent::behaviors();
+    $behaviors['authenticator'] = [
+      'class' => HttpBearerAuth::className(),
+      'except' => ['auth/login', 'auth/signup'],
+    ];
+    $behaviors['contentNegotiator'] = [
+      'class' => 'yii\filters\ContentNegotiator',
+      'formats' => [
+        'application/json' => Response::FORMAT_JSON,
+      ],
+    ];
+    return $behaviors;
+  }
 
-        // custom initialization code goes here
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function init()
+  {
+    parent::init();
+    Yii::$app->user->enableSession = false;
+    // custom initialization code goes here
+  }
 }

@@ -195,6 +195,7 @@ class Korisnik extends \yii\db\ActiveRecord implements IdentityInterface
     if (parent::beforeSave($insert)) {
       if ($this->isNewRecord) {
         $this->authKey = \Yii::$app->security->generateRandomString();
+        $this->accessToken = \Yii::$app->security->generateRandomString();
         $this->Lozinka = \Yii::$app->security->generatePasswordHash($this->Lozinka);
       }
       return true;

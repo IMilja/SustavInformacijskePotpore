@@ -54,9 +54,23 @@ $config = [
       'showScriptName' => false,
       'rules' => [
         ['class' => 'yii\rest\UrlRule',
-          'controller' => ['v1/korisnik', 'v1/novosti', 'v1/prijava', 'v1/stanjeterena'],
+          'controller' => [
+            'v1/korisnik',
+            'v1/novosti',
+            'v1/prijava',
+            'v1/stanje-terena',
+            'v1/auth'
+          ],
           'pluralize' => false
         ],
+        ['class' => 'yii\rest\UrlRule',
+          'controller' => [
+            'v1/'
+          ],
+          'patterns' => [
+            'POST' => 'create'
+          ]
+        ]
       ],
     ],
 
