@@ -27,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
       //'ID_Korisnik',
       'Vrijeme_Prijave',
-      'Odobreno',
+      //'Odobreno',
+      [
+        'attribute' => 'Stanje prijave',
+        'value' => function ($model) {return $model->Odobreno === 1 ? 'Odobreno' : 'Nije odobreno';},
+      ],
       'Vrijeme_Odobrenja',
       //'ID',
       //'Opis',
