@@ -40,6 +40,7 @@ class module extends \yii\base\Module
   {
     parent::init();
     Yii::$app->user->enableSession = false;
+    Yii::$app->response->format = 'json';
     // custom initialization code goes here
   }
 }
