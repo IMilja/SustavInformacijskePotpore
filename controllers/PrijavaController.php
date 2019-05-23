@@ -142,4 +142,20 @@ class PrijavaController extends Controller
 
     throw new NotFoundHttpException('The requested page does not exist.');
   }
+
+  public function actionApprove($id){
+    $model = $this->findModel($id);
+
+    $model->approvePrijava(true);
+
+    return $this->redirect(['prijava/view', 'id' => $id]);
+  }
+
+  public function actionDisapprove($id){
+    $model = $this->findModel($id);
+
+    $model->approvePrijava(false);
+
+    return $this->redirect(['prijava/view', 'id' => $id]);
+  }
 }
