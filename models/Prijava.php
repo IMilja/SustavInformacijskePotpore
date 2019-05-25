@@ -121,4 +121,15 @@ class Prijava extends \yii\db\ActiveRecord
 
     return $mail;
   }
+
+  public function beforeSave($insert)
+  {
+    if (parent::beforeSave($insert)) {
+      if ($this->isNewRecord) {
+        $this->Vrijeme_Prijave = date("Y-m-d h:i");
+      }
+      return true;
+    }
+    return false;
+  }
 }
