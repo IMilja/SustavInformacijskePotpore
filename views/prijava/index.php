@@ -14,23 +14,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-      <?= Html::a('Unos prijave', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
   <?php Pjax::begin(); ?>
 
   <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
       ['class' => 'yii\grid\SerialColumn'],
-
       //'ID_Korisnik',
       'Vrijeme_Prijave',
       //'Odobreno',
       [
         'attribute' => 'Stanje prijave',
-        'value' => function ($model) {return $model->Odobreno === 1 ? 'Odobreno' : 'Nije odobreno';},
+        'value' => function ($model) {
+          return $model->Odobreno === 1 ? 'Odobreno' : 'Nije odobreno';
+        },
       ],
       'Vrijeme_Odobrenja',
       //'ID',
@@ -39,7 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
       //'Long',
       //'ID_Novost',
 
-      ['class' => 'yii\grid\ActionColumn'],
+      ['class' => 'yii\grid\ActionColumn',
+        'template' => '{view} {update}',
+      ],
     ],
   ]); ?>
 
