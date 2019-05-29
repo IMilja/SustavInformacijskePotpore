@@ -37,6 +37,7 @@ class StanjeTerena extends \yii\db\ActiveRecord
       [['Broj_Vatrogasaca', 'Broj_Vozila', 'ID_Korisnik', 'ID_Prijava'], 'integer'],
       [['Opis'], 'string', 'max' => 255],
       [['Trajanje'], 'string', 'max' => 24],
+      [['Broj_Vatrogasaca', 'Broj_Vozila', 'ID_Korisnik', 'Opis'], 'required'],
       [['ID_Prijava'], 'exist', 'skipOnError' => true, 'targetClass' => Prijava::className(), 'targetAttribute' => ['ID_Prijava' => 'ID']],
       [['ID_Korisnik'], 'exist', 'skipOnError' => true, 'targetClass' => Korisnik::className(), 'targetAttribute' => ['ID_Korisnik' => 'ID']],
     ];
