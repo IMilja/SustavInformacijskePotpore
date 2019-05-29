@@ -24,13 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'columns' => [
       ['class' => 'yii\grid\SerialColumn'],
-
       //'ID_Korisnik',
       'Vrijeme_Prijave',
       //'Odobreno',
       [
         'attribute' => 'Stanje prijave',
-        'value' => function ($model) {return $model->Odobreno === 1 ? 'Odobreno' : 'Nije odobreno';},
+        'value' => function ($model) {
+          return $model->Odobreno === 1 ? 'Odobreno' : 'Nije odobreno';
+        },
       ],
       'Vrijeme_Odobrenja',
       //'ID',
@@ -39,7 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
       //'Long',
       //'ID_Novost',
 
-      ['class' => 'yii\grid\ActionColumn'],
+      ['class' => 'yii\grid\ActionColumn',
+        'template' => '{view} {update}',
+      ],
     ],
   ]); ?>
 
