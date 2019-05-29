@@ -41,6 +41,12 @@ class Prijava extends \yii\db\ActiveRecord
       [['Lat', 'Long'], 'number'],
       [['Odobreno', 'ID_Novost', 'ID_Korisnik'], 'integer'],
       [['Opis'], 'string', 'max' => 255],
+      [[
+        'Opis',
+        'Lat',
+        'Long',
+        'ID_Korisnik'
+      ], 'required'],
       [['ID_Korisnik'], 'exist', 'skipOnError' => true, 'targetClass' => Korisnik::className(), 'targetAttribute' => ['ID_Korisnik' => 'ID']],
       [['ID_Novost'], 'exist', 'skipOnError' => true, 'targetClass' => Novost::className(), 'targetAttribute' => ['ID_Novost' => 'ID']],
     ];
