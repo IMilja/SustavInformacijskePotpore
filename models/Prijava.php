@@ -41,6 +41,12 @@ class Prijava extends \yii\db\ActiveRecord
       [['Lat', 'Long'], 'number'],
       [['Odobreno', 'ID_Novost', 'ID_Korisnik'], 'integer'],
       [['Opis'], 'string', 'max' => 255],
+      [[
+        'Opis',
+        'Lat',
+        'Long',
+        'ID_Korisnik'
+      ], 'required'],
       [['ID_Korisnik'], 'exist', 'skipOnError' => true, 'targetClass' => Korisnik::className(), 'targetAttribute' => ['ID_Korisnik' => 'ID']],
       [['ID_Novost'], 'exist', 'skipOnError' => true, 'targetClass' => Novost::className(), 'targetAttribute' => ['ID_Novost' => 'ID']],
     ];
@@ -86,5 +92,50 @@ class Prijava extends \yii\db\ActiveRecord
   public function getStanjeTerenas()
   {
     return $this->hasMany(StanjeTerena::className(), ['ID_Prijava' => 'ID']);
+  }
+
+  public function approvePrijava($approve){
+    if($approve){
+      $this->Odobreno = 1;
+      $this->Vrijeme_Odobrenja = date("Y-m-d h:i");
+      $this->sendNotificationMail('Vaša prijava je odoborena');
+    }
+    else{
+      $this->Odobreno = 0;
+      $this->sendNotificationMail('Vaša prijava je nije odoborena');
+    }
+    $this->save(['Odobreno']);
+  }
+
+  public function sendNotificationMail($message){
+
+    Yii::$app->mailer->compose([ 'html' => '@app/mail/layouts/html' ],
+      [
+        'content' => $this->composeMail($message)
+      ])
+      ->setFrom(['from@domain.com' => 'Sustav informacijske potpore'])
+      ->setTo($this->korisnik->EMail)
+      ->setSubject('Stanje prijave')
+      ->send();
+  }
+
+  private function composeMail($message){
+    $mail = "<strong> Poštovani ". $this->korisnik->Ime . " ". $this->korisnik->Prezime ."</strong><br>";
+    $mail .= "<p>". $message ."</p>";
+    $mail .= "<p>Opis prijave: ". $this->Opis ."</p>";
+    $mail .= '<p>Lijep pozdrav</p>';
+
+    return $mail;
+  }
+
+  public function beforeSave($insert)
+  {
+    if (parent::beforeSave($insert)) {
+      if ($this->isNewRecord) {
+        $this->Vrijeme_Prijave = date("Y-m-d h:i");
+      }
+      return true;
+    }
+    return false;
   }
 }

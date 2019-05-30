@@ -13,23 +13,12 @@ class PrijavaController extends ActiveController
   public function actions()
   {
     return [
-      'view' => [
-        'class' => 'yii\rest\ViewAction',
-        'modelClass' => $this->modelClass,
-        'checkAccess' => [$this, 'checkAccess'],
-      ],
       'create' => [
         'class' => 'yii\rest\CreateAction',
         'modelClass' => $this->modelClass,
         'checkAccess' => [$this, 'checkAccess'],
         'scenario' => $this->createScenario,
       ],
-      'update' => [
-        'class' => 'yii\rest\UpdateAction',
-        'modelClass' => $this->modelClass,
-        'checkAccess' => [$this, 'checkAccess'],
-        'scenario' => $this->updateScenario,
-      ]
     ];
   }
 

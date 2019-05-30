@@ -17,6 +17,17 @@ $config = [
     '@npm' => '@vendor/npm-asset',
   ],
   'components' => [
+    'assetManager' => [
+      'bundles' => [
+        'dosamigos\google\maps\MapAsset' => [
+          'options' => [
+            'key' => 'AIzaSyCpamZCkQB00zlTGj6xGUFk7sBhUd-kqA0',
+            'language' => Yii::$app->language,
+            'version' => '3.1.18'
+          ]
+        ]
+      ]
+    ],
     'request' => [
       // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
       'cookieValidationKey' => 'jw3Clr0lu_3dxMKccXyz96TkcOl-oWbb',
@@ -39,7 +50,15 @@ $config = [
       // send all mails to a file by default. You have to set
       // 'useFileTransport' to false and configure a transport
       // for the mailer to send real emails.
-      'useFileTransport' => true,
+      'useFileTransport' => false,
+      'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => 'smtp.gmail.com',
+        'username' => 'programsko2019@gmail.com',
+        'password' => 'Programsko123',
+        'port' => '465',
+        'encryption' => 'ssl',
+      ],
     ],
     'log' => [
       'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -87,14 +106,14 @@ if (YII_ENV_DEV) {
   $config['modules']['debug'] = [
     'class' => 'yii\debug\Module',
     // uncomment the following to add your IP if you are not connecting from localhost.
-    'allowedIPs' => ['127.0.0.1', '::1', '*'],
+    //'allowedIPs' => ['127.0.0.1', '::1', '*'],
   ];
 
   $config['bootstrap'][] = 'gii';
   $config['modules']['gii'] = [
     'class' => 'yii\gii\Module',
     // uncomment the following to add your IP if you are not connecting from localhost.
-    'allowedIPs' => ['127.0.0.1', '::1', '*'],
+    //'allowedIPs' => ['127.0.0.1', '::1', '*'],
   ];
 }
 

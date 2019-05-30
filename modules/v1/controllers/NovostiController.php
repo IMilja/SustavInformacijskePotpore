@@ -15,17 +15,14 @@ class NovostiController extends Controller
     $query = new Query();
 
     $query->from('Novost')
-      ->join('Inner Join', 'Prijava', 'Novost.ID = Prijava.ID_Novost')
-      ->join('Inner Join', 'StanjeTerena', 'Prijava.ID = StanjeTerena.ID_Prijava')
+      ->join('Left Join', 'Prijava', 'Novost.ID = Prijava.ID_Novost')
       ->join('Inner Join', 'Korisnik', 'Novost.ID_Korisnik = Korisnik.ID')
       ->select(
-        'Novost.Opis as Opis_Novosti, Novost.Vrijeme_Objave as Vrijeme_Novosti, 
-      Prijava.Opis as Opis_Prijave, Prijava.Vrijeme_Prijave as Vrijeme_Prijave, 
-      StanjeTerena.Opis, StanjeTerena.Trajanje, 
-      StanjeTerena.Broj_Vatrogasaca, StanjeTerena.Broj_Vozila,
-      Korisnik.Korisnicko_Ime as Autor');
+        'Korisnik.Korisnicko_Ime as Autor, Novost.Naslov as Naslov_Novosti, Novost.Opis as Opis_Novosti, 
+        Novost.Vrijeme_Objave as Vrijeme_Novosti, Prijava.Opis as Opis_Prijave, 
+        Prijava.Vrijeme_Prijave as Vrijeme_Prijave');
 
-    return new ActiveDataProvider(['query' => $query]);
+    return $query->all();
   }
 
   public function behaviors()

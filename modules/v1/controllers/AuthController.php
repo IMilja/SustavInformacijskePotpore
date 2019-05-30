@@ -39,6 +39,7 @@ class AuthController extends Controller
     $model->surname = $parms['surname'];
     $model->email = $parms['email'];
     $model->phoneNumber = $parms['phoneNumber'];
+    $model->passwordRepeat = $parms['passwordRepeat'];
 
     $response['errors'] = $model->signup();
 
