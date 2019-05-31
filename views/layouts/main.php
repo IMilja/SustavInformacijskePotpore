@@ -33,7 +33,7 @@ AppAsset::register($this);
     'brandLabel' => Yii::$app->name,
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-      'class' => 'navbar navbar-fixed-top',
+      'class' => 'navbar navbar-default navbar-fixed-top',
     ],
   ]);
   echo Nav::widget([
