@@ -67,7 +67,7 @@ class AuthController extends Controller
       $response['access_token'] = Korisnik::findByUsername($model->username)->accessToken;
       $response['userData']['role'] = Uloga::findOne(['ID' => Korisnik::findByUsername($model->username)->ID_Uloge])
         ->Naziv_Uloge;
-      $response['userData']['ID'] = Korisnik::findByUsername($model->username)->ID_Uloge;
+      $response['userData']['ID'] = Korisnik::findByUsername($model->username)->ID;
       return $response;
     } else {
       $response['status'] = '400';
