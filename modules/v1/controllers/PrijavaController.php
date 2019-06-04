@@ -40,4 +40,8 @@ class PrijavaController extends ActiveController
 
     return $query->all();
   }
+
+  public function actionIndex(){
+    return Prijava::find()->select(['ID', 'Opis'])->all();
+  }
 }
