@@ -79,18 +79,11 @@ class PrijavaController extends Controller
    * Creates a new Prijava model.
    * If creation is successful, the browser will be redirected to the 'view' page.
    * @return mixed
+   * @throws NotFoundHttpException
    */
   public function actionCreate()
   {
-    $model = new Prijava();
-
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-      return $this->redirect(['view', 'id' => $model->ID]);
-    }
-
-    return $this->render('create', [
-      'model' => $model,
-    ]);
+    throw new NotFoundHttpException('The requested page does not exist.');
   }
 
   /**
@@ -108,7 +101,7 @@ class PrijavaController extends Controller
       return $this->redirect(['view', 'id' => $model->ID]);
     }
 
-    return $this->render('update', [
+    return $this->render('update_form', [
       'model' => $model,
     ]);
   }
