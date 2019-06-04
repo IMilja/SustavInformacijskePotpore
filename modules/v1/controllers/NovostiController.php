@@ -3,7 +3,6 @@
 
 namespace app\modules\v1\controllers;
 
-use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\rest\Controller;
 
