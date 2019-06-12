@@ -20,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     'attributes' => [
       //'ID',
       'Opis',
-      'Trajanje',
+      ['attribute' => 'Trajanje',
+        'value' => $model->Trajanje. ' min'],
       'Broj_Vatrogasaca',
       'Broj_Vozila',
       [
